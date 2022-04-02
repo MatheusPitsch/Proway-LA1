@@ -13,3 +13,4 @@ for linha in matriz:
     for valor in linha:
         print(valor,end='')
     print()
+print('Programa Finalizado.')
