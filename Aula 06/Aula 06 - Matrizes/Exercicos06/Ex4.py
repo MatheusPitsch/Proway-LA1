@@ -40,10 +40,5 @@ for i, linha in enumerate(matriz):
                 matriz_maior[i] = valor
         
 print(matriz_maior)
-
-
-
-
-
 print(matriz)
 print(matriz_2)
