@@ -25,4 +25,6 @@ def soma(a: int, b: int = 10) -> int:
     '''Retorna a soma entre a e b. Se nenhum valor for informado para b, irá utilizar 10'''
     return a + b
 
+#Para printar um retorno 
+print(soma(1,2))
 
