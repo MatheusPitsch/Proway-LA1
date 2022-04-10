@@ -23,7 +23,7 @@ def cadastro_aluno():
     if verificacao_matricula(matricula) == True:
         input('Aluno ja cadastrado')
     else:
-        aluno.append([nome,matricula,'--','--','--'])
+        aluno.append([matricula,nome,'--','--','--'])
         matriz_alunos.append(aluno)
         
 def verificacao_matricula(matricula) -> bool:
@@ -46,10 +46,10 @@ def editar_informacao_aluno():
 
 def cadastrar_notas_aluno():
     '''Cadastra as 3 notas do aluno.'''
-    matricula = int(input('Digite a matricula do aluno que deseja insirir as notas.'))
-    if verificacao_matricula == True:
+    matricula = int(input('Digite a matricula do aluno que deseja insirir as notas: '))
+    if verificacao_matricula(matricula) == True:
         for i in range(3):
-            nota = float(input(f'Digite a nota {i} do aluno:'))
+            nota = float(input(f'Digite a nota {i} do aluno: '))
             for i in matriz_alunos:
                 if i[2] == '--':
                     i[2] == nota
@@ -57,6 +57,8 @@ def cadastrar_notas_aluno():
                     i[3] == nota
                 elif i[4] == '--':
                     i[4] == nota
+    else:
+        input('Aluno não encontrado')
 
 def listar_alunos():
     '''Lista todos os alunos que foram cadastrados.'''

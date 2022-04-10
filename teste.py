@@ -1,36 +1,57 @@
-matriz_alunos = []
-def cadastro_aluno():
-    '''Retorna a identificação do aluno.'''
+from ast import Global
+from typing import List
+
+matriz_aluno = [[71719,'matheus''--','--','--']]
+
+def mostrar_menu():
+    '''Mostra o menu parao o cliente.'''
+
+    print('''
+    
+        Menu do Professor
+
+    1) Cadastrar aluno
+    2) Editar informações do aluno
+    3) Cadastrar notas de um aluno
+    4) Listar alunos
+    0) Sair
+    ''')
+
+def cadastro_aluno() -> List[int]:
+    '''Cadastra o aluno no sistema da escola.'''
     aluno = []
-    nome = str (input('Digite o nome do aluno: '))
-    matricula = int (input('Digite a matricula do aluno: '))
+    matricula = int(input('Digite a matricula do aluno: '))
     if verificacao_matricula(matricula) == True:
         input('Aluno ja cadastrado')
     else:
-        aluno.append([nome,matricula,'--','--','--'])
-        matriz_alunos.append(aluno)
+        nome = str(input('Digite o nome do aluno: '))
+        aluno = [matricula,nome,'--','--','--']
+        matriz_aluno.append(aluno)
 
-def verificacao_matricula(matricula) -> bool:
-    for i  in matriz_alunos:
+def verificacao_matricula(matricula) -> int:
+    '''Verifica se o aluno existe no sistema.'''
+    for i in matriz_aluno:
         if i[0] == matricula:
             return True
     return False
 
-def cadastrar_notas_aluno():
-    '''Cadastra as 3 notas do aluno.'''
-    matricula = int(input('Digite a matricula do aluno que deseja insirir as notas.'))
-    if verificacao_matricula == True:
-        for i in range(3):
-            nota = float(input(f'Digite a nota {i} do aluno: '))
-            for i in matriz_alunos:
-                if i[2] == '--':
-                    i[2] == nota
-                elif i[3] == '--':
-                    i[3] == nota
-                elif i[4] == '--':
-                    i[4] == nota
+def editar_informacao_aluno() -> str:
+    '''Edita o nome do aluno'''
+    matricula = int(input('Digite a matricula do aluno: '))
+    indece_aluno = obtem_matricula(matricula)
+    if indece_aluno < 0:
+        input('Não existe um aluno com a matricula informada.')
+        return
+    nome_novo = str(input('Digite o novo nome do aluno: '))
+    matriz_aluno[indece_aluno][1] = nome_novo
 
-cadastro_aluno()
-print(matriz_alunos)
-cadastrar_notas_aluno()
-print(matriz_alunos)
+def obtem_matricula(matricula) -> int:
+    global matriz_aluno
+    for i, aluno in enumerate(matriz_aluno):
+        if aluno[0] == matricula:
+            return i 
+    return -1
+
+
+editar_informacao_aluno()
+print(matriz_aluno)
