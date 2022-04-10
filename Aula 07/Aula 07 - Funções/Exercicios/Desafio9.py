@@ -1,7 +1,8 @@
 from ast import Global
+import os
 from typing import List
 
-matriz_aluno = [[71719,'matheus','--','--','--','--','--']]
+matriz_aluno = []
 
 def mostrar_menu():
     '''Mostra o menu parao o cliente.'''
@@ -25,7 +26,7 @@ def cadastro_aluno() -> List[int]:
         input('Aluno ja cadastrado')
     else:
         nome = str(input('Digite o nome do aluno: '))
-        aluno = [matricula,nome,'--','--','--']
+        aluno = [matricula,nome,'--','--','--','--','--']
         matriz_aluno.append(aluno)
 
 def verificacao_matricula(matricula) -> int:
@@ -46,6 +47,7 @@ def editar_informacao_aluno() -> str:
     matriz_aluno[indece_aluno][1] = nome_novo
 
 def obtem_matricula(matricula) -> int:
+    '''Usado para localizar aonde o aluno se encontra.'''
     global matriz_aluno
     for i, aluno in enumerate(matriz_aluno):
         if aluno[0] == matricula:
@@ -53,6 +55,7 @@ def obtem_matricula(matricula) -> int:
     return -1
 
 def cadastra_nota_aluno() -> int:
+    '''Cadastra a nota do aluno no siste, mostra a media e se esta aprovado ou não.'''
     global matriz_aluno
     matricula = int(input('Digite a matricula do aluno: '))
     indece_aluno = obtem_matricula(matricula,)
@@ -75,5 +78,29 @@ def cadastra_nota_aluno() -> int:
     else:
         matriz_aluno[indece_aluno][6] = 'Reprovado'
 
-cadastra_nota_aluno()
-print(matriz_aluno)
+def listar_alunos() -> list:
+    '''Mostra a lista dos alunos cadastrados no sistema.'''
+    for aluno in matriz_aluno:
+        for coluna in aluno:
+            print(coluna, end=' ')
+        print()
+    input('Aperte enter para continuar.')
+
+while True:
+    os.system('cls')
+    mostrar_menu()
+
+    opcao = int(input('Digite uma opção: '))
+
+    if opcao == 1:
+        cadastro_aluno()
+    elif opcao == 2:
+        editar_informacao_aluno()
+    elif opcao == 3:
+        cadastra_nota_aluno()
+    elif opcao == 4:
+        listar_alunos()
+    elif opcao == 0:
+        break
+    else:
+        input('Opção invalida.')
