@@ -1,7 +1,7 @@
 from ast import Global
 from typing import List
 
-matriz_aluno = [[71719,'matheus''--','--','--']]
+matriz_aluno = [[71719,'matheus','--','--','--','--','--']]
 
 def mostrar_menu():
     '''Mostra o menu parao o cliente.'''
@@ -52,6 +52,28 @@ def obtem_matricula(matricula) -> int:
             return i 
     return -1
 
+def cadastra_nota_aluno() -> int:
+    global matriz_aluno
+    matricula = int(input('Digite a matricula do aluno: '))
+    indece_aluno = obtem_matricula(matricula,)
+    
+    if indece_aluno < 0:
+        input('Não existe um aluno com a matricula informada.')
+        return
+    soma = 0
+    for i in range (1,4):
+        nota = int(input(f'Digite a {i}ª nota do aluno: '))
+        soma += nota
+        
+        matriz_aluno[indece_aluno][i + 1] = nota
+    media = soma/3
+        
+    matriz_aluno[indece_aluno][5] = media
+    
+    if media >= 6:
+        matriz_aluno[indece_aluno][6] = 'Aprovado'
+    else:
+        matriz_aluno[indece_aluno][6] = 'Reprovado'
 
-editar_informacao_aluno()
+cadastra_nota_aluno()
 print(matriz_aluno)
