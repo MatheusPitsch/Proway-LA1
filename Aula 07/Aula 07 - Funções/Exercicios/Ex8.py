@@ -16,4 +16,4 @@ def checar_ano_bissextos(ano:int)  -> bool:
 
     print(divisao_ano == float)
 
-checar_ano_bissextos(2020)
+checar_ano_bissextos(2024)
